@@ -1,10 +1,11 @@
 import React from 'react';
 import InputDiv from '../../components/InputDiv';
-import { MainStyle } from './style';
+import { MainStyle } from './styles';
 
 const InitialPage: React.FC = () => {
   return(
     <MainStyle>
+      <p>Crie sua agenda compartilhada</p>
       <InputDiv 
         label='E-mail'
         placeholder='Insira seu e-mail'

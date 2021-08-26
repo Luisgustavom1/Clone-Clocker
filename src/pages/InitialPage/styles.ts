@@ -11,7 +11,12 @@ export const MainStyle = styled.main`
   gap: 30px;
 
   width: 70%;
-  
+
+  p {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+
   span {
     display: flex;
     align-items: center;
@@ -24,7 +29,7 @@ export const MainStyle = styled.main`
   }
 
   button {
-    background: #4E84D4;
+    background: ${(props) => props.theme.same.background.initialPage};
     color: #FFFFFF;
 
     width: 100%;

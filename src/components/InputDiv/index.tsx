@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputDivStyle } from './style';
+import { InputDivStyle } from './styles';
 
 interface InputDivProps {
   type?: string

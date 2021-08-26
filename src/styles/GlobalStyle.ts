@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Roboto', sans-serif;
+        background-color: ${props => props.theme.background.main};
     }
 
     a, li, ul, ol {
@@ -28,7 +29,7 @@ export const ContainerContent = styled.div`
 
     margin: 0 auto;
 
-    color: #2B3C54;
+    color: ${props => props.theme.colors.primary};
     font-size: 18px;
     letter-spacing: 0.2em;
 `
