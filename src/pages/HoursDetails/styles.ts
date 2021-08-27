@@ -8,4 +8,16 @@ export const Container = styled.main`
   gap: 20px;
 
   width: 100%;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 60%;
+
+    font-size: 16px;
+    
+    margin: 0 auto 40px auto;
+  }
 `;
