@@ -1,6 +1,6 @@
 import { PeopleCardsStyle, PeopleCardsNotOcuppiedStyle, PeopleCardsOcuppiedStyle } from "./styles";
 
-interface PeopleCards {
+interface PeopleCardsProps {
     occupied: boolean
     hour: string
     data?: {
@@ -9,7 +9,7 @@ interface PeopleCards {
     }
 }
 
-const PeopleCards = (props: PeopleCards): JSX.Element => {
+const PeopleCards = (props: PeopleCardsProps): JSX.Element => {
   return(
       <PeopleCardsStyle occupied={props.occupied}>
           {props.occupied ? 

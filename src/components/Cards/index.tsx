@@ -1,14 +1,14 @@
 import { CardsStyles } from './styles';
 
 interface CardsProps {
-    hour: string
+    children: React.ReactNode
     occupied: boolean
 }
 
-const Cards= (props: CardsProps): JSX.Element => {
+const Cards= ({ children, occupied }: CardsProps): JSX.Element => {
   return(
-      <CardsStyles occupied={props.occupied}>
-        {props.hour}
+      <CardsStyles occupied={occupied}>
+        {children}
       </CardsStyles>
   )
 }

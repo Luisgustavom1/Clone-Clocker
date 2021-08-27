@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import InitialPage from "./pages/InitialPage";
 import HoursPage from "./pages/Hours";
 import { ContainerContent, GlobalStyle } from "./styles/GlobalStyle";
+import Routes from "./Routes";
 
 function App() {
   const { theme } = useContext(AppContext)
@@ -16,8 +17,7 @@ function App() {
         <GlobalStyle />
         <ContainerContent>
           <Header />
-          {/* <InitialPage /> */}
-          <HoursPage />
+          <Routes />
         </ContainerContent>
       </ThemeProvider>
     </AppProvider>

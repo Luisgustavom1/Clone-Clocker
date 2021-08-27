@@ -2,7 +2,7 @@ import React from 'react';
 import InputDiv from '../../components/InputDiv';
 import { MainStyle } from './styles';
 
-const InitialPage: React.FC = () => {
+const InitialPage = () => {
   return(
     <MainStyle>
       <p>Crie sua agenda compartilhada</p>

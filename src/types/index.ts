@@ -18,7 +18,21 @@ export type ThemeTypes = {
             finallyPage: string
         },
         background: {
-            initialPage: '#4E84D4',
+            initialPage: '#4E84D4'
         }
     }
 }
+
+export type HoursType = {
+    occupied: boolean;
+    time: string;
+    details: {
+        name: string;
+        tel: string;
+    }
+}
+
+export type DatasHoursType = {
+    day: string;
+    hours: HoursType[];
+};
