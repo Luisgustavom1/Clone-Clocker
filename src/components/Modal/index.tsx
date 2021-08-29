@@ -34,7 +34,7 @@ const Modal = (props: ModalProps) => {
     //   }
     // });
 
-    // await database.ref('/day/5').push({
+    // await database.ref('/day').push({
     //     day: '28',
     //     hours: [
     //         {
@@ -105,11 +105,18 @@ const Modal = (props: ModalProps) => {
     //   })
 
     await database.ref(`/day`)
-      .on('value', (days) => {
-        console.log(days.val());
+      .on('value', (day) => {
+        const days = day.val()
         
-        // const parsedDays = Object.entries()
-        })
+        const arrayDays: any = [];
+
+        for(var [key, value] of Object.entries(days)) {
+          arrayDays.push(value)
+        }
+
+        console.log(arrayDays);
+        
+      })
   };
 
   return (
