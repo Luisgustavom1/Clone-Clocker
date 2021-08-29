@@ -19,10 +19,6 @@ const HoursPage = () => {
 
     const dataToday =  datasHours.filter(dataHours => dataHours.day === dateFormated[2])[0];
 
-    function reserveTime() {
-      setShowModal(true)
-    }
-
     return(
         <HourPageStyle>
             <span>
@@ -34,15 +30,18 @@ const HoursPage = () => {
             </span>
             <div>
                 {dataToday.hours.map(today => 
-                    <Cards 
+                    <>
+                      <Cards 
                         occupied={today.occupied}
-                        day={dataToday.day}
-                        onClick={() => reserveTime()}
-                    >
-                        {today.time}
-                    </Cards>)}
+                        onClick={() => setShowModal(true)}
+                      >
+                          {today.time}
+                      </Cards>
+                      {showModal && <Modal setShowModal={setShowModal} day={dataToday.day} hour={today.time}/>}
+                    </>
+                    )
+                    }
             </div>
-            {showModal && <Modal setShowModal={setShowModal}/>}
         </HourPageStyle>
     );
 }
