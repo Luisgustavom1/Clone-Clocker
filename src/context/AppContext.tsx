@@ -223,7 +223,7 @@ interface AppContextProps {
 }
 
 const AppContext = createContext<AppContextProps>({
-    theme: light,
+    theme: dark,
     setTheme: () => {},
     isAuthenticated: true,
     datasHours: [],
@@ -239,7 +239,7 @@ export function AppProvider(props: AppProviderProps) {
     
     const [isAuthenticated, setIsAuthenticated] = useState(true)
     const [datasHours, setDatasHours] = useState(initialData);
-    const [theme, setTheme] = useState<ThemeTypes>(light)
+    const [theme, setTheme] = useState<ThemeTypes>(dark)
 
     return (
         <AppContext.Provider value={{ theme, setTheme, isAuthenticated, datasHours, setDatasHours }}>

@@ -1,13 +1,15 @@
 import { CardsStyles } from './styles';
 
 interface CardsProps {
-    children: React.ReactNode
-    occupied: boolean
+  children: React.ReactNode
+  occupied: boolean
+  day: string
+  onClick: () => void
 }
 
-const Cards= ({ children, occupied }: CardsProps): JSX.Element => {
+const Cards= ({ children, occupied, day, onClick }: CardsProps): JSX.Element => {
   return(
-      <CardsStyles occupied={occupied}>
+      <CardsStyles occupied={occupied} data-day={day} onClick={onClick}>
         {children}
       </CardsStyles>
   )

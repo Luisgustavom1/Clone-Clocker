@@ -6,12 +6,12 @@ interface InputDivProps {
   label?: string
   placeholder?: string
   identify: string
-  width: string
+  width?: string
 }
 
 const InputDiv: React.FC<InputDivProps> = (props) => {
   return(
-      <InputDivStyle width={props.width}>
+      <InputDivStyle width={props.width ? props.width : '150px'}>
         {props.label && 
           <label 
             htmlFor={props.identify}
