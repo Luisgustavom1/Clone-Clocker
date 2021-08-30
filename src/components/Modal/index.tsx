@@ -24,104 +24,22 @@ const Modal = (props: ModalProps) => {
     const name = data.get('nome');
     const tel = data.get('telefone');
 
-    // if(!name || !tel) return alert('Preenche todos os campos');
+    if(!name || !tel) return alert('Preenche todos os campos');
 
-    // const databaseRef = await database.ref(`day/1/hours/09:00`).update({
+    // await database.ref(`days/${Number(props.day) - 1}/hours/${props.hour}`).update({
     //   occupied: true,
     //   details: {
     //     name,
     //     tel
     //   }
     // });
-
-    // await database.ref('/day').push({
-    //     day: '28',
-    //     hours: [
-    //         {
-    //             occupied: false,
-    //             time: '08:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //         {
-    //             occupied: false,
-    //             time: '09:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //         {
-    //             occupied: false,
-    //             time: '10:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //         {
-    //             occupied: false,
-    //             time: '11:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //         {
-    //             occupied: false,
-    //             time: '12:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //         {
-    //             occupied: false,
-    //             time: '13:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //         {
-    //             occupied: false,
-    //             time: '14:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //         {
-    //             occupied: false,
-    //             time: '15:00',
-    //             details: {
-    //                 name: '',
-    //                 tel: ''
-    //             }
-    //         },
-    //     ]
-    //   })
-
-    await database.ref(`/day`)
-      .on('value', (day) => {
-        const days = day.val()
         
-        const arrayDays: any = [];
-
-        for(var [key, value] of Object.entries(days)) {
-          arrayDays.push(value)
-        }
-
-        console.log(arrayDays);
-        
-      })
+    alert(`Horário das ${props.hour} do dia ${props.day} marcado com sucesso para ${name}`)
   };
 
   return (
       <Container>
-          <section>
+          <section data-hour={props.hour}>
               <header>
                 <img src={
                     theme.title === 'light' ? 
@@ -134,7 +52,7 @@ const Modal = (props: ModalProps) => {
                 />
               </header>
               <MainStyle>
-                    <p>Marcar horário das 08:00</p>
+                    <p>Marcar horário das {props.hour}</p>
                     <form onSubmit={(e) => reserveTime(e)} className={props.day}>
                         <div>
                           <label htmlFor='nome'>Nome</label>
