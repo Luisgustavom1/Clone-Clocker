@@ -1,45 +1,44 @@
-import firebase from 'firebase';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { FormEvent } from 'react';
+import { FormEvent, useContext } from 'react';
 import InputDiv from '../../components/InputDiv';
 import { MainStyle } from './styles';
-import { parseCookies, setCookie, destroyCookie } from 'nookies'
+import { setCookie } from 'nookies';
+import { useHistory } from 'react-router-dom';
+import AppContext from '../../context/AppContext';
 
 const InitialPage = () => {
-  const [user, setUser] = useState<any>()
-  const cookies = parseCookies()
+  const history = useHistory();
 
-  const login = (e: FormEvent<HTMLFormElement> | any) => {
+  const { login, setUser, user } = useContext(AppContext);
+
+  const handleClick = async (e: FormEvent<HTMLFormElement> | any) => {
     e.preventDefault();
 
     const data = new FormData(e.target);
 
-    const email = data.get('email') as string;
-    const password = data.get('password') as string;
+    let email = data.get('email') as string;
+    let password = data.get('password') as string;
 
-    if(!email || !password) return alert('Preencha todos os dados')
-     
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      setUser(userCredential.user);
+    if(!email || !password) return alert('Preencha todos os dados');
 
-      setCookie(null, 'uid', user.uid, {
-        maxAge: 3600,
-        path: '/'
-      })
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      alert(errorMessage + ' ' + errorCode);
-    });
+    const newUser = await login(email, password);
+    
+    setUser(newUser);    
+    
+    history.push('/hours');
+    
+    email = '';
+    password = '';
   };
+  
+  user && setCookie(null, 'uid', user.uid, {
+    maxAge: 60,
+    path: '/'
+  });
 
   return(
     <MainStyle>
       <p>Crie sua agenda compartilhada</p>
-      <form onSubmit={(e) => login(e)}>
+      <form onSubmit={(e) => handleClick(e)}>
         <InputDiv 
           label='E-mail'
           placeholder='Insira seu e-mail'
@@ -68,10 +67,6 @@ const InitialPage = () => {
       </form>
     </MainStyle>
   );
-}
+};
 
 export default InitialPage;
-
-function setCookies(arg0: string, uid: any) {
-  throw new Error('Function not implemented.');
-}

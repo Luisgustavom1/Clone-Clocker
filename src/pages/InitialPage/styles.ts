@@ -12,6 +12,12 @@ export const MainStyle = styled.main`
 
   width: 70%;
 
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
   p {
     margin-bottom: 30px;
     font-size: 16px;

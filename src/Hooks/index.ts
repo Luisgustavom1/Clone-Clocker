@@ -17,7 +17,6 @@ export function useDataDay(today: string) {
       setDataToday(databaseToday[0])
     });
 
-    console.log(dataToday);
   }, [])
 
   return { dataToday }

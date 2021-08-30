@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   
   return (
       <HeaderStyle>
-          <img alt='Logo' src={theme.title === 'light' ? logoLight : logoDark}></img>
+          <img alt='Logo' src={theme.title === 'light' ? logoLight : logoDark}/>
           <div onClick={() => setTheme(theme.title === 'light' ? dark : light)}>
             {theme.title === 'light' ? 
               <i className="fas fa-moon"></i> : 
