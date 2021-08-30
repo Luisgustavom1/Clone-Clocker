@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { FormEvent, useContext } from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -15,12 +15,15 @@ const HoursPage = () => {
   const { dateFormated, setDateFormated } = useContext(AppContext);
 
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [hourChecked, setHourChecked] = useState<string>('')
 
   const { dataToday } = useDataDay(dateFormated[2]);
 
-  function handleClick(occupied: boolean) {
+  function handleClick(e: FormEvent<HTMLButtonElement> | any, occupied: boolean) {
     if(occupied) return history.push('/hours/details')
 
+    setHourChecked(e.target.dataset.time);
+    
     setShowModal(true)
   }
 
@@ -39,14 +42,20 @@ const HoursPage = () => {
                   return <>
                             <Cards 
                               occupied={dataToday?.hours[key].occupied}
-                              onClick={() => handleClick(dataToday?.hours[key].occupied)}
+                              onclick={(ev) => handleClick(ev, dataToday?.hours[key].occupied)}
+                              time={dataToday?.hours[key].time}
                             >
                                 {dataToday?.hours[key].time}
                             </Cards>
-                            {showModal && <Modal setShowModal={setShowModal} day={dataToday.day} hour={dataToday?.hours[key].time}/>}
                           </>
                 })
               }
+              {showModal && 
+                          <Modal 
+                            setShowModal={setShowModal} 
+                            day={dataToday?.day} 
+                            hour={hourChecked && hourChecked}
+                            />}
           </div>
       </HourPageStyle>
   );

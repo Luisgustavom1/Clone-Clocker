@@ -1,15 +1,21 @@
+import { FormEvent } from 'react';
 import { CardsStyles } from './styles';
 
 interface CardsProps {
   children: React.ReactNode
   occupied: boolean
-  onClick: () => void
+  onclick: (ev: FormEvent) => void
+  time: string
 }
 
-const Cards= ({ children, occupied, onClick }: CardsProps): JSX.Element => {
+const Cards= ({ children, occupied, onclick, time }: CardsProps): JSX.Element => {
   return(
       <>
-        <CardsStyles occupied={occupied} onClick={onClick}>
+        <CardsStyles 
+          occupied={occupied} 
+          onClick={(ev) => onclick(ev)} 
+          data-time={time}  
+        >
           {children}
         </CardsStyles>
       </>

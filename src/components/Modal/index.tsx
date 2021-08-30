@@ -8,7 +8,7 @@ import { database } from '../../services/firebase';
 
 type ModalProps = {
   setShowModal: (value: boolean) => void
-  day: string
+  day?: string
   hour: string
 }
 
@@ -20,8 +20,8 @@ const Modal = (props: ModalProps) => {
 
     const data = new FormData(e.target);
     
-    const name = data.get('nome');
-    const tel = data.get('telefone');
+    let name = data.get('nome');
+    let tel = data.get('telefone');
 
     if(!name || !tel) return alert('Preenche todos os campos');
 
@@ -33,7 +33,11 @@ const Modal = (props: ModalProps) => {
       }
     });
         
-    alert(`Horário das ${props.hour} do dia ${props.day} marcado com sucesso para ${name}`)
+    alert(`Horário das ${props.hour} do dia ${props.day} marcado com sucesso para ${name}`);
+
+    name = '';
+    tel = '';
+    props.setShowModal(false);
   };
 
   return (
