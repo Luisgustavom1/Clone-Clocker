@@ -1,20 +1,15 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import PeopleCards from '../../components/PeopleCards';
 import AppContext from '../../context/AppContext';
 import { Container } from './styles';
-import formatDate from '../../Utils/FormatDate';
 import changeDay from '../../Utils/changeDay';
+import { useDataDay } from '../../Hooks';
 
 const HoursDetails = (): JSX.Element => {
+  const { dateFormated, setDateFormated } = useContext(AppContext);
 
-  const date = new Date()
+  const { dataToday } = useDataDay(dateFormated[2]);
 
-  const [dateFormated, setDateFormated] = useState<string[]>(formatDate(date));
-
-  const { datasHours } = useContext(AppContext);
-
-  const dataToday =  datasHours.filter(dataHours => dataHours.day === dateFormated[2])[0].hours;
-  
   return(
       <Container>
         <span>
@@ -24,13 +19,13 @@ const HoursDetails = (): JSX.Element => {
             </p>
           <i className="fas fa-chevron-right" onClick={() => setDateFormated(changeDay('increment', dateFormated))}></i>
         </span>
-        {dataToday.map(datas => 
+        {dataToday && Object.keys(dataToday?.hours).map(key => 
           <PeopleCards 
-            occupied={datas.occupied}
-            hour={datas.time}
+            occupied={dataToday?.hours[key].occupied}
+            hour={dataToday?.hours[key].time}
             data={{
-              name: datas.details.name,
-              number: datas.details.tel
+              name: dataToday?.hours[key].details.name,
+              number: dataToday?.hours[key].details.tel,
             }}
           />)}
       </Container>

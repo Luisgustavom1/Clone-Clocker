@@ -34,5 +34,7 @@ export type HoursType = {
 
 export type DatasHoursType = {
     day: string;
-    hours: HoursType[];
+    hours: {
+      [index: string]: HoursType,
+    };
 };

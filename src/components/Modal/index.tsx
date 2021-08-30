@@ -26,13 +26,13 @@ const Modal = (props: ModalProps) => {
 
     if(!name || !tel) return alert('Preenche todos os campos');
 
-    // await database.ref(`days/${Number(props.day) - 1}/hours/${props.hour}`).update({
-    //   occupied: true,
-    //   details: {
-    //     name,
-    //     tel
-    //   }
-    // });
+    await database.ref(`days/${Number(props.day) - 1}/hours/${props.hour}`).update({
+      occupied: true,
+      details: {
+        name,
+        tel
+      }
+    });
         
     alert(`Horário das ${props.hour} do dia ${props.day} marcado com sucesso para ${name}`)
   };
