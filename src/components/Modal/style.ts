@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.article`
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, .1);
 
   width: 100vw;
   height: 100vh;
@@ -17,6 +17,8 @@ export const Container = styled.article`
     height: 70%;
 
     margin: 80px auto;
+
+    border-radius: 10px;
   }
 
   header {

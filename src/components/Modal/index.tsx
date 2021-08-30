@@ -5,7 +5,6 @@ import logoLight from '../../assets/img/logoLight.svg';
 import { Container, MainStyle } from './style';
 import AppContext from '../../context/AppContext';
 import { database } from '../../services/firebase';
-import { displayPartsToString } from 'typescript';
 
 type ModalProps = {
   setShowModal: (value: boolean) => void

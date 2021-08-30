@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Cards from '../../components/Cards';
 import Modal from '../../components/Modal';
@@ -9,11 +10,19 @@ import changeDay from '../../Utils/changeDay';
 import { HourPageStyle } from './styles';
 
 const HoursPage = () => {
+  const history = useHistory()
+
   const { dateFormated, setDateFormated } = useContext(AppContext);
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const { dataToday } = useDataDay(dateFormated[2]);
+
+  function handleClick(occupied: boolean) {
+    if(occupied) return history.push('/hours/details')
+
+    setShowModal(true)
+  }
 
   return(
       <HourPageStyle>
@@ -30,7 +39,7 @@ const HoursPage = () => {
                   return <>
                             <Cards 
                               occupied={dataToday?.hours[key].occupied}
-                              onClick={() => setShowModal(true)}
+                              onClick={() => handleClick(dataToday?.hours[key].occupied)}
                             >
                                 {dataToday?.hours[key].time}
                             </Cards>
